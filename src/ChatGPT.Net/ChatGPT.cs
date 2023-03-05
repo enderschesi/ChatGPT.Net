@@ -73,42 +73,19 @@ public class ChatGpt
 
         Socket.OnConnected += (sender, e) =>
         {
-            if(firstConnection) Console.WriteLine("Connected to the Bypass Node!");
             firstConnection = false;
             Ready = true;
         };
         
         Socket.OnReconnected += (sender, e) =>
         {
-            Console.WriteLine("Reconnected to the Bypass Node!");
             Ready = true;
-        };
-        
-        Socket.OnError += (sender, e) =>
-        {
-            Console.WriteLine($"Error: {e}");
-        };
-
-        Socket.OnReconnectAttempt += (sender, e) =>
-        {
-            Console.WriteLine($"Reconnecting...");
-        };
-        
-        Socket.OnReconnectError += (sender, e) =>
-        {
-            Console.WriteLine($"Reconnection Error: {e}");
-        };
-
-        Socket.OnReconnectFailed += (sender, e) =>
-        {
-            Console.WriteLine($"Reconnection Failed!");
         };
 
         Socket.OnDisconnected += async (sender, e) =>
         {
             if(!Ready) return;
             Ready = false;
-            Console.WriteLine("Disconnected from the Bypass Node! Reconnecting...");
             tryAgain:
             try
             {
@@ -117,8 +94,6 @@ public class ChatGpt
             catch (Exception ex)
             {
                 Ready = false;
-                Console.WriteLine($"CacheException caught: {ex.Message}");
-                Console.WriteLine("Retrying in 10 second...");
                 await Task.Delay(5000);
                 goto tryAgain;
             }
@@ -136,8 +111,6 @@ public class ChatGpt
             catch (Exception e)
             {
                 Ready = false;
-                Console.WriteLine($"CacheException caught: {e.Message}");
-                Console.WriteLine("Retrying in 10 second...");
                 await Task.Delay(5000);
             }
         }
