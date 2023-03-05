@@ -11,9 +11,8 @@
         <PackageIcon>artificial-intelligence.png</PackageIcon>
         <RepositoryUrl>https://github.com/PawanOsman/ChatGPT.Net</RepositoryUrl>
         <PackageTags>chat,chatgpt,ai,unofficial</PackageTags>
-        <SignAssembly>true</SignAssembly>
         <AssemblyOriginatorKeyFile>ChatGPT.snk</AssemblyOriginatorKeyFile>
-        <PublicSign>true</PublicSign>
+        <PublicSign>false</PublicSign>
         <LangVersion>default</LangVersion>
         <TargetFrameworks>net6.0;net7.0</TargetFrameworks>
         <Version>1.1.5</Version>
